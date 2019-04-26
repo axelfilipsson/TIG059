@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         metadata-complete="true">
+
+  <context-param>
+    <param-name>ProductLine</param-name>
+    <param-value>DB</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>api</servlet-name>
+    <servlet-class>se.gu.ait.sbserver.servlet.SystemetWebAPI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>api</servlet-name>
+    <url-pattern>/search/*</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>log4jServletFilter</filter-name>
+    <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>log4jServletFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+    <!--dispatcher>ASYNC</dispatcher--><!-- Servlet 3.0 w/ disabled auto-initialization only; not supported in 2.5 -->
+  </filter-mapping>
+</web-app>
