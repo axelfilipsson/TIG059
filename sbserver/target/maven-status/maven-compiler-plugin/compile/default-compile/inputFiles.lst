@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\cygwin64\home\hecto\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\domain\Product.java
 C:\cygwin64\home\hecto\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\AbstractProductExporter.java
 C:\cygwin64\home\hecto\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\ProductGroupExporter.java
@@ -24,3 +25,31 @@ C:\cygwin64\home\hecto\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\
 C:\cygwin64\home\hecto\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\ProductLineFactory.java
 C:\cygwin64\home\hecto\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\ProductLine.java
 C:\cygwin64\home\hecto\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\Formatter.java
+=======
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\main\TestSQLInsertExporter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\SystemetAPIv1.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\SystemetWebAPI.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\JsonFormatter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\package-info.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\Constraint.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\AbstractProductExporter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\main\TestSwing.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\ParameterParser.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\domain\Product.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\ProductGroupExporter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\JsonExporter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\SQLInsertExporter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\ProductLineFactory.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\SQLBasedProductLine.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\ProductLine.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\main\TestJsonExporter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\ProductGroups.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\XMLBasedProductLine.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\CSVHelper.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\DBHelper.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\main\TestProductLine.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\main\TestStreams.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\FormatterFactory.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\servlet\Formatter.java
+C:\cygwin64\home\emeli\tig059\TIG059\sbserver\src\main\java\se\gu\ait\sbserver\storage\FakeProductLine.java
+>>>>>>> 93074fd2cd6ab3eb4a48dd0306d16696bc63650e
