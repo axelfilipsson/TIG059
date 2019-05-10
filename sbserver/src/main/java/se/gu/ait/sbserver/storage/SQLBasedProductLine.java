@@ -19,18 +19,14 @@ public class SQLBasedProductLine implements ProductLine {
 
   // Prevent instantiation from outside this package
   SQLBasedProductLine() { }
-  
+
   public List<Product> getProductsFilteredBy(Predicate<Product> predicate) {
-    if (products == null) {
       readProductsFromDatabase();
-    }
     return products.stream().filter(predicate).collect(Collectors.toList());
   }
-  
+
   public List<Product> getAllProducts() {
-    if (products == null) {
       readProductsFromDatabase();
-    }
     return products;
   }
 
@@ -67,5 +63,5 @@ public class SQLBasedProductLine implements ProductLine {
     } catch (SQLException sqle) {
       sqle.printStackTrace();
     }
-  }  
+  }
 }
