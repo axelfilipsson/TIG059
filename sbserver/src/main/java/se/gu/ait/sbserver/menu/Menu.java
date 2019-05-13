@@ -1,7 +1,7 @@
-package org.addressbook.ui.cli.menu;
+package src.main.java.se.gu.ait.sbserver.menu;
 import java.util.List;
 import java.util.ArrayList;
-import static org.addressbook.textutils.TextUtils.askFor;
+
 /**
  * <p>
  * This class represents a text based menu consisting of

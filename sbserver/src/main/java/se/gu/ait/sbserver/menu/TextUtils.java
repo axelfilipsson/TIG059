@@ -1,4 +1,4 @@
-package org.addressbook.textutils;
+package src.main.java.se.gu.ait.sbserver.menu;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package org.addressbook.ui.cli.menu;
+package src.main.java.se.gu.ait.sbserver.menu;
 import java.util.Date;
 
 /**

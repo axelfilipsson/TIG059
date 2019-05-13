@@ -1,4 +1,4 @@
-package org.addressbook.ui.cli.menu;
+package src.main.java.se.gu.ait.sbserver.menu;
 /**
  * This interface describes the action to be performed
  * when a user selects a menu item associated with
