@@ -9,7 +9,7 @@
 
   <context-param>
     <param-name>ProductLine</param-name>
-    <param-value>DB</param-value>
+    <param-value>fake</param-value>
   </context-param>
   <servlet>
     <servlet-name>api</servlet-name>

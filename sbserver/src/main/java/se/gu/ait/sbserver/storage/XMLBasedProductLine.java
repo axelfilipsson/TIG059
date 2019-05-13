@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  */
 public class XMLBasedProductLine implements ProductLine {
 
-  static String XML_FILE = "";//"resources/sortiment.xml";
+  static String XML_FILE = "src/main/resources/sortiment.xml";
   static {
     String file = System.getProperty("sortiment-xml-file");
     if (file != null) {
@@ -46,23 +46,23 @@ public class XMLBasedProductLine implements ProductLine {
   static final String ALCOHOL = "Alkoholhalt";
   static final String PRICE = "Prisinklmoms";
   static final String VOLUME = "Volymiml";
-  static final String DROPPED = "Utgått";  
+  static final String DROPPED = "Utgått";
   static final String NR = "nr";
   static final String PRODUCT_GROUP = "Varugrupp";
   static final String TYPE = "Typ";
-  
+
   private List<Product> products;
 
   // Prevent instantiation from outside this package
   XMLBasedProductLine() { }
-  
+
   public List<Product> getProductsFilteredBy(Predicate<Product> predicate) {
     if (products == null) {
       readProductsFromFile();
     }
     return products.stream().filter(predicate).collect(Collectors.toList());
   }
-  
+
   public List<Product> getAllProducts() {
     if (products == null) {
       readProductsFromFile();
@@ -85,7 +85,7 @@ public class XMLBasedProductLine implements ProductLine {
       String productGroup = null;
       String type = "";
       boolean hadType = false;
-      
+
       while (eventReader.hasNext()) {
         XMLEvent event = eventReader.nextEvent();
         if (event.isStartElement()) {
@@ -140,7 +140,7 @@ public class XMLBasedProductLine implements ProductLine {
             price = (event.asCharacters().getData());
             if (price == null) {
               System.err.println(name + " has price null");
-              
+
             }
             continue;
           }
@@ -200,5 +200,5 @@ public class XMLBasedProductLine implements ProductLine {
       e.printStackTrace();
     }
   }
-  
+
 }
