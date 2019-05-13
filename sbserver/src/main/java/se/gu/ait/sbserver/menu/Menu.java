@@ -105,11 +105,11 @@ public class Menu{
           System.out.println(index++ + " " + m.prompt);
         }
         // Add an option for quitting (this would be the last number)
-        System.out.println(index + " quit");
+        System.out.println(index + " Avsluta");
         // Prompt the user for a selection (a number from the list)
         // System.out.print("Please enter a number from the menu: ");
         // Read the number from the user
-        reply = Integer.parseInt(askFor("Pleas enter a number from the menu"));
+        reply = Integer.parseInt(TextUtils.askFor("Ange ett nummer från menyn"));
         // If the user wants to quit, then return from this method
         if (reply==index) {
           System.out.println("\nBye!\n");

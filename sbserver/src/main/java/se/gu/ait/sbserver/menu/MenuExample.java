@@ -1,5 +1,5 @@
 package src.main.java.se.gu.ait.sbserver.menu;
-import java.util.Date;
+
 
 /**
  *
@@ -9,24 +9,26 @@ import java.util.Date;
  */
 public class MenuExample{
   public static void main(String[] args){
-    Menu m = new Menu("this is a menu");
-    m.addMenuItem("Print today's date", new MenuAction(){
+    Menu m = new Menu("Meny");
+
+    m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
-          System.out.println(new Date());
+          System.out.println("Alla produkter");
+
         }
       });
-    m.addMenuItem("Print system info", new MenuAction(){
-        public void onItemSelected(){
-          System.out.println(System.getProperties().get("os.name")
-                             + " - Java: "
-                             + System.getProperties().get("java.version"));
-        }
-      });
-    m.addMenuItem("Say hello", new MenuAction(){
-        public void onItemSelected(){
-          System.out.println("Hello");
-        }
-      });
+
+      m.addMenuItem("Nyheter", new MenuAction(){
+          public void onItemSelected(){
+            System.out.println("Alla förändringar i sortimentet");
+          }
+        });
+
+      m.addMenuItem("Produktsök", new MenuAction(){
+          public void onItemSelected(){
+            System.out.println("Ange produkt id");
+          }          });
+
     m.start();
   }
 }
