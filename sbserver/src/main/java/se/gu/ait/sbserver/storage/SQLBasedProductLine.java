@@ -26,7 +26,11 @@ import java.sql.*;
  */
 public class SQLBasedProductLine implements ProductLine {
 
+<<<<<<< HEAD
+  static String XML_FILE = "src/main/resources/products.xml";
+=======
   static String XML_FILE = "src/main/resources/sortiment.xml";
+>>>>>>> e3160d8cdc2a321f58dd16f81eba5756baf22648
   static {
     String file = System.getProperty("sortiment-xml-file");
     if (file != null) {

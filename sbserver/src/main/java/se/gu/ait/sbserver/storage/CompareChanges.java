@@ -2,6 +2,11 @@ package se.gu.ait.sbserver.storage;
 
 import se.gu.ait.sbserver.domain.Product;
 
+<<<<<<< HEAD
+public class CompareChanges{
+
+  
+=======
 public class CompareChanges implements Product.Exporter {
     private String name;
     private double price;
@@ -85,4 +90,5 @@ public class CompareChanges implements Product.Exporter {
   }
 
 
+>>>>>>> e3160d8cdc2a321f58dd16f81eba5756baf22648
 }
