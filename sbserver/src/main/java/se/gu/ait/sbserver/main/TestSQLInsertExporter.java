@@ -30,7 +30,7 @@ public class TestSQLInsertExporter {
     // Example use:
     //p1.export(sqlExp);
     //System.out.println(sqlExp.toSQLInsertString());
-    
+
     // Load all products from the XML file and export each product
     // so that we can get an SQL INSERT statement from each one of them
     try {
@@ -58,12 +58,12 @@ public class TestSQLInsertExporter {
         System.out.println(pge.toSQLReplaceString());
         System.out.println(sqlExp.toSQLReplaceString());
       }
-      
+
     } catch (Exception e) {
       // Shoudn't happen...
       System.err.println("Error parsing XML: " + e.getMessage());
       e.printStackTrace();
     }
-    
+
   }
 }

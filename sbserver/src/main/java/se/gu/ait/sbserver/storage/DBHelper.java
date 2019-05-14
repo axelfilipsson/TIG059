@@ -17,11 +17,13 @@ public class DBHelper {
     public static final int PRICE = 4;
     public static final int VOLUME = 5;
     public static final int TYPE = 6;
-    public static final int PRODUCT_GROUP = 7;
+    public static final int INSERTDATE = 7;
+    public static final int PRODUCT_GROUP = 8;
   }
   // Tables
   private static final String PRODUCT_TABLE = "product";
   private static final String PRODUCT_GROUP_TABLE = "productGroup";
+  private static final String PRICE_CHANGE_TABLE = "priceChanges";
   // Product table columns
   private static final String PRODUCT_NR = "nr";
   private static final String PRODUCT_NAME = "name";
@@ -29,10 +31,14 @@ public class DBHelper {
   private static final String PRICE = "price";
   private static final String VOLUME = "volume";
   private static final String TYPE = "type";
+  public static final String INSERTDATE = "insertDate";
   private static final String PRODUCT_GROUP_ID = "productGroupId";
   // productGroup table columns
   private static final String ID = "id";
   private static final String PRODUCT_GROUP = "name";
+  //priceChanges table columns
+  private static final String PRICE_PRODUCT_NR = "nr";
+  private static final String CHANGE_PRICE = "price";
 
   private static final String DB_URL =
     "jdbc:sqlite:src/main/resources/bolaget.db";
@@ -59,6 +65,7 @@ public class DBHelper {
         .append(", ").append(PRODUCT_TABLE).append(".").append(PRICE)
         .append(", ").append(PRODUCT_TABLE).append(".").append(VOLUME)
         .append(", ").append(PRODUCT_TABLE).append(".").append(TYPE)
+        .append(", ").append(PRODUCT_TABLE).append(".").append(INSERTDATE)
         .append(", ").append(PRODUCT_GROUP_TABLE).append(".").append(PRODUCT_GROUP)
         .append(" FROM ").append(PRODUCT_TABLE).append(" JOIN ").append(PRODUCT_GROUP_TABLE)
         .append(" ON ").append(PRODUCT_TABLE).append(".").append(PRODUCT_GROUP_ID)
@@ -71,4 +78,27 @@ public class DBHelper {
       return null;
     }
   }
+
+  private Connection connect() {
+    Connection conn = null;
+    try {
+      conn = DriverManager.getConnection(DB_URL);
+    } catch (SQLException sqle) {
+      logger.error("Couldn't get connection to " + DB_URL +
+              sqle.getMessage());
+      System.err.println("Couldn't get connection to " + DB_URL +
+                         sqle.getMessage());
+    }
+    return conn;
+  }
+
+  /*public static xmlResultSet() {
+    try {
+      Statement statement = connection.createStatement();
+      return statement;
+    }catch (SQLException sqle) {
+      System.err.println("Could not insert to database " + sqle.getMessage());
+      return null;
+    }
+  }*/
 }

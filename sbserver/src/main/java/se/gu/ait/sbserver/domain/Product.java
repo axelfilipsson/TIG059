@@ -68,6 +68,7 @@ public class Product {
     private int volume; // milliliters
     private int nr; // XML: <nr>nnn</nr> unique nr in the catalog
     private String productGroup; // e.g. <Varugrupp>Okryddad sprit</Varugrupp>
+    private String insertDate;
     private String type; // e.g. <Typ>Syrlig öl</Typ>
 
     /**
@@ -83,6 +84,7 @@ public class Product {
         void addVolume(int volume);
         void addNr(int nr);
         void addProductGroup(String productGroup);
+        void addInsertDate(String insertDate);
         void addType(String type);
     }
 
@@ -96,6 +98,7 @@ public class Product {
         private int volume; // milliliters
         private int nr; // XML: <nr>nnn</nr> unique nr in the catalog
         private String productGroup; // e.g. <Varugrupp>Okryddad sprit</Varugrupp>
+        private String insertDate;
         private String type;
 
         /**
@@ -148,6 +151,11 @@ public class Product {
             return this;
         }
 
+        public Builder insertDate(String insertDate) {
+            this.insertDate = insertDate;
+            return this;
+        }
+
         /**
          *
          */
@@ -176,6 +184,7 @@ public class Product {
         this.volume = builder.volume;
         this.nr = builder.nr;
         this.productGroup = builder.productGroup;
+        this.insertDate = builder.insertDate;
         this.type = builder.type;
     }
 
@@ -208,6 +217,7 @@ public class Product {
         builder.addNr(nr);
         builder.addVolume(volume);
         builder.addProductGroup(productGroup);
+        builder.addInsertDate(insertDate);
         builder.addType(type);
     }
     /**
@@ -286,6 +296,10 @@ public class Product {
         return type;
     }
 
+    public String insertDate() {
+        return insertDate;
+    }
+
     /**
      * Returns the product number of this Product
      * @return The product number of this Product
@@ -312,7 +326,7 @@ public class Product {
                 String.format("%.2f", alcohol) + "%, " +
                 volume + " ml" + ", " +
                 String.format("%.2f", price) + " SEK " +
-                productGroup + type + ", Product number: " +
+                productGroup + insertDate + type + ", Product number: " +
                 nr;
     }
 

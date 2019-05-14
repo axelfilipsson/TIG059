@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+
 /**
  * <p>An implementation of ProuctLine which parses a local
  * XML file with the ProductLine from Systembolaget.</p>
@@ -51,27 +52,27 @@ public class XMLBasedProductLine implements ProductLine {
   static final String PRODUCT_GROUP = "Varugrupp";
   static final String TYPE = "Typ";
 
-  private List<Product> products;
+  public List<Product> xmlproducts;
 
   // Prevent instantiation from outside this package
   XMLBasedProductLine() { }
 
   public List<Product> getProductsFilteredBy(Predicate<Product> predicate) {
-    if (products == null) {
+    if (xmlproducts == null) {
       readProductsFromFile();
     }
-    return products.stream().filter(predicate).collect(Collectors.toList());
+    return xmlproducts.stream().filter(predicate).collect(Collectors.toList());
   }
 
   public List<Product> getAllProducts() {
-    if (products == null) {
+    if (xmlproducts == null) {
       readProductsFromFile();
     }
-    return products;
+    return xmlproducts;
   }
 
   private void readProductsFromFile() {
-    products = new ArrayList<>();
+    xmlproducts = new ArrayList<>();
     try {
       XMLInputFactory inputFactory = XMLInputFactory.newInstance();
       InputStream in = new FileInputStream(XML_FILE);
@@ -169,7 +170,7 @@ public class XMLBasedProductLine implements ProductLine {
         if (event.isEndElement()) {
           EndElement endElement = event.asEndElement();
           if (endElement.getName().getLocalPart().equals(PRODUCT)) {
-            products.add(new Product.Builder()
+            xmlproducts.add(new Product.Builder()
                          .name(name)
                          .price(Double.parseDouble(price))
                          .alcohol(Double
