@@ -1,7 +1,7 @@
 package se.gu.ait.sbserver.menu;
 
 import se.gu.ait.sbserver.domain.Product;
-import se.gu.ait.sbserver.storage.SQLBasedProductLine;
+import se.gu.ait.sbserver.storage.XMLBasedProductLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,7 @@ public class MenuExample{
     m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
           System.out.println("Alla produkter");
-        SQLBasedProductLine sortiment = new SQLBasedProductLine();
-          List<Product> products = sortiment.getAllProducts();
+          List<Product> products = XMLBasedProductLine.getAllProducts();
           for(int i=0;i<products.size();i++){
             System.out.println(products.get(i));
           }
