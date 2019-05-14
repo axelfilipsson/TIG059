@@ -112,7 +112,7 @@ public class Menu{
         reply = Integer.parseInt(TextUtils.askFor("Ange ett nummer från menyn"));
         // If the user wants to quit, then return from this method
         if (reply==index) {
-          System.out.println("\nBye!\n");
+          System.out.println("\nHejdå!\n");
           // Quit the menu
           return;
         }
