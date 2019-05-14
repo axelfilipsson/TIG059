@@ -1,6 +1,10 @@
-package src.main.java.se.gu.ait.sbserver.menu;
+package se.gu.ait.sbserver.menu;
 
+import se.gu.ait.sbserver.domain.Product;
+import se.gu.ait.sbserver.storage.SQLBasedProductLine;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * This class is not a part of the address book API, it only
@@ -14,7 +18,11 @@ public class MenuExample{
     m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
           System.out.println("Alla produkter");
-
+        SQLBasedProductLine sortiment = new SQLBasedProductLine();
+          List<Product> products = sortiment.getAllProducts();
+          for(int i=0;i<products.size();i++){
+            System.out.println(products.get(i));
+          }
         }
       });
 

@@ -1,4 +1,4 @@
-package src.main.java.se.gu.ait.sbserver.menu;
+package se.gu.ait.sbserver.menu;
 import java.util.List;
 import java.util.ArrayList;
 
