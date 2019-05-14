@@ -1,7 +1,8 @@
 package se.gu.ait.sbserver.menu;
 
 import se.gu.ait.sbserver.domain.Product;
-import se.gu.ait.sbserver.storage.XMLBasedProductLine;
+import se.gu.ait.sbserver.storage.ProductLine;
+import se.gu.ait.sbserver.storage.ProductLineFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,16 @@ public class MenuExample{
     m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
           System.out.println("Alla produkter");
-          List<Product> products = XMLBasedProductLine.getAllProducts();
+          ProductLine line = ProductLineFactory.getProductLine();
+          List<Product> products = line.getAllProducts();
+          for (Product p : products) {
+            System.out.println(p);
+          }
+          
+          /*
           for(int i=0;i<products.size();i++){
             System.out.println(products.get(i));
-          }
+          } */
         }
       });
 
