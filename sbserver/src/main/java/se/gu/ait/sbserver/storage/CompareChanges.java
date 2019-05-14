@@ -9,7 +9,9 @@ public class CompareChanges implements Product.Exporter {
     private int volume;
     private int nr;
     private String productGroup;
+    private String insertDate;
     private String type;
+
 
     @Override
     public void addName(String name) {
@@ -41,6 +43,10 @@ public class CompareChanges implements Product.Exporter {
       this.productGroup = productGroup;
     }
 
+    @Override
+    public void addInsertDate(String insertDate) {
+      this.insertDate = insertDate;
+    }
     @Override
     public void addType(String type) {
       this.type = type;
