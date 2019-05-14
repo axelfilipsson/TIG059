@@ -16,3 +16,6 @@
 0:0:0:0:0:0:0:1 - - [13/May/2019:12:00:56 +0200] "GET /sbserver/search.html HTTP/1.1" 304 - http-bio-9090-exec-1 38
 0:0:0:0:0:0:0:1 - - [13/May/2019:12:00:57 +0200] "GET /sbserver/search/products/all?min_price=&max_price=&min_alcohol=&max_alcohol= HTTP/1.1" 400 96 http-bio-9090-exec-2 90
 0:0:0:0:0:0:0:1 - - [13/May/2019:12:02:12 +0200] "GET /sbserver/search/products/all?min_price=&max_price=&min_alcohol=&max_alcohol= HTTP/1.1" 200 3011692 http-bio-9090-exec-1 1314
+0:0:0:0:0:0:0:1 - - [13/May/2019:12:15:34 +0200] "GET /sbserver/search.html HTTP/1.1" 200 664 http-bio-9090-exec-2 118
+0:0:0:0:0:0:0:1 - - [13/May/2019:12:15:35 +0200] "GET /favicon.ico HTTP/1.1" 404 - http-bio-9090-exec-3 0
+0:0:0:0:0:0:0:1 - - [13/May/2019:12:15:40 +0200] "GET /sbserver/search/products/all?min_price=&max_price=&min_alcohol=&max_alcohol= HTTP/1.1" 200 3011699 http-bio-9090-exec-4 3741

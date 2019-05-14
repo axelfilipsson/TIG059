@@ -9,6 +9,7 @@ public abstract class AbstractProductExporter implements Product.Exporter {
   protected int volume;
   protected int nr;
   protected String productGroup;
+  protected String insertDate;
   protected String type;
 
   @Override
@@ -39,6 +40,11 @@ public abstract class AbstractProductExporter implements Product.Exporter {
   @Override
   public void addProductGroup(String productGroup) {
     this.productGroup = productGroup;
+  }
+
+  @Override
+  public void addInsertDate(String insertDate) {
+    this.insertDate = insertDate;
   }
 
   @Override
