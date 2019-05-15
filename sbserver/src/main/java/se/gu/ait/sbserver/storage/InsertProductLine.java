@@ -250,11 +250,12 @@ public class InsertProductLine implements ProductLine {
   }
 
   private void xmlInserter() {
-      xmlproducts.removeAll(products);
       try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
+        xmlproducts.removeAll(products);
         for (Product product : xmlproducts) {
             product.export(sqlInsert);
             stmt.execute(sqlInsert.toSQLReplaceString());
+            stmt.execute(sqlInsert.toSQLUpdateString());
             System.out.println("New product added: " + product);
           }
       }catch (SQLException sqle) {

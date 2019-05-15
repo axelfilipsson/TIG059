@@ -126,4 +126,9 @@ public class SQLInsertExporter implements Product.Exporter {
               nr, escape(name), price, alcohol,
               volume, ProductGroups.idFromProductGroup(productGroup), escape(insertDate), escape(type));
   }
+
+  public String toSQLUpdateString() {
+    return String
+      .format("UPDATE product SET insertDate = date('now') WHERE insertDate = '';");
+  }
 }

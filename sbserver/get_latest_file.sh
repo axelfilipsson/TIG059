@@ -5,7 +5,7 @@ echo -e "Fetching sortiment.xml...\n"
 if [[ -f "src/main/resources/sortiment.xml" ]]
 then
     echo -e "Removing old XML"
-    rm resources/sortiment.xml
+    rm src/main/resources/sortiment.xml
 fi
 
 if [ ! -d "src/main/resources" ]
