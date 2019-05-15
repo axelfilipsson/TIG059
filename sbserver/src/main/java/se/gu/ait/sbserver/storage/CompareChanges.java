@@ -2,8 +2,6 @@ package se.gu.ait.sbserver.storage;
 
 import se.gu.ait.sbserver.domain.Product;
 
-public class CompareChanges{
-
 
 public class CompareChanges implements Product.Exporter {
     private String name;
@@ -86,6 +84,5 @@ public class CompareChanges implements Product.Exporter {
       ,nr,escape(name),price,alcohol,volume
       ,ProductGroups.idFromProductGroup(productGroup),escape(type));
   }
-
 
 }
