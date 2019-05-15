@@ -52,12 +52,6 @@ public class TestSQLInsertExporter {
       */
       // TODO: Fix sqlExp so that it uses the productGroupId
       // instead of the productGroup string itself
-      for (Product product : products) {
-        product.export(sqlExp);
-        product.export(pge);
-        System.out.println(pge.toSQLReplaceString());
-        System.out.println(sqlExp.toSQLReplaceString());
-      }
 
     } catch (Exception e) {
       // Shoudn't happen...

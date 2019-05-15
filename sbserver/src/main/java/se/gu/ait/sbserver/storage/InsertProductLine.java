@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.Collection;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -26,7 +27,7 @@ import java.sql.*;
  */
 public class InsertProductLine implements ProductLine {
 
-  static String XML_FILE = "src/main/resources/products.xml";
+  static String XML_FILE = "src/main/resources/sortiment.xml";
 
   static {
     String file = System.getProperty("sortiment-xml-file");
@@ -47,6 +48,7 @@ public class InsertProductLine implements ProductLine {
 
 
   private List<Product> xmlproducts;
+  private List<Product> products;
   private static final String DB_URL =
     "jdbc:sqlite:src/main/resources/bolaget.db";
 
@@ -58,14 +60,51 @@ public class InsertProductLine implements ProductLine {
 
   public List<Product> getProductsFilteredBy(Predicate<Product> predicate) {
     readProductsFromFile();
+    readProductsFromDatabase();
     xmlInserter();
     return xmlproducts.stream().filter(predicate).collect(Collectors.toList());
   }
 
   public List<Product> getAllProducts() {
     readProductsFromFile();
+    readProductsFromDatabase();
     xmlInserter();
     return null;
+  }
+
+  private void readProductsFromDatabase() {
+    System.out.println("Reading products from database.");
+    products = new ArrayList<>();
+    try {
+      ResultSet rs = DBHelper.productsResultSet();
+      while (rs.next()) {
+        String name;
+        double alcohol;
+        int volume;
+        double price;
+        int nr;
+        String productGroup;
+        String type;
+        name = rs.getString(DBHelper.ColumnId.NAME);
+        alcohol = rs.getDouble(DBHelper.ColumnId.ALCOHOL);
+        volume = rs.getInt(DBHelper.ColumnId.VOLUME);
+        price = rs.getDouble(DBHelper.ColumnId.PRICE);
+        nr = rs.getInt(DBHelper.ColumnId.PRODUCT_NR);
+        type = rs.getString(DBHelper.ColumnId.TYPE);
+        productGroup = rs.getString(DBHelper.ColumnId.PRODUCT_GROUP);
+        products.add(new Product.Builder()
+                     .name(name)
+                     .price(price)
+                     .alcohol(alcohol)
+                     .volume(volume)
+                     .nr(nr)
+                     .productGroup(productGroup)
+                     .type(type)
+                     .build());
+      }
+    } catch (SQLException sqle) {
+      sqle.printStackTrace();
+    }
   }
 
   private void readProductsFromFile() {
@@ -211,13 +250,12 @@ public class InsertProductLine implements ProductLine {
   }
 
   private void xmlInserter() {
+      xmlproducts.removeAll(products);
       try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
         for (Product product : xmlproducts) {
-            product.export(pge);
             product.export(sqlInsert);
-            stmt.execute(pge.toSQLReplaceString());
             stmt.execute(sqlInsert.toSQLReplaceString());
-            System.out.println("--Product added--" + product);
+            System.out.println("New product added: " + product);
           }
       }catch (SQLException sqle) {
         System.err.println("Unable to insert products from xml " + sqle.getMessage());
