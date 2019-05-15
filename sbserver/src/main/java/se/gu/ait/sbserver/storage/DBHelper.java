@@ -79,7 +79,7 @@ public class DBHelper {
     }
   }
 
-  private Connection connect() {
+  public Connection connect() {
     Connection conn = null;
     try {
       conn = DriverManager.getConnection(DB_URL);

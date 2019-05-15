@@ -26,3 +26,4 @@ echo -e "\nDone fixing the xml indentation."
 echo -e "==========\n\n"
 echo -e "Inserting files to database, please wait"
 mvn exec:java -Dexec.mainClass=se.gu.ait.sbserver.main.TestSQLInsertExporter -DProductLine=INSERT
+echo -e "No more products to add, closing down"
