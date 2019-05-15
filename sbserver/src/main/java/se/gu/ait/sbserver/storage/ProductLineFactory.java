@@ -44,4 +44,8 @@ public class ProductLineFactory {
     }
     //return new XMLBasedProductLine();
   }
+
+  public static ProductLine getXMLProductLine(){
+      return XML_PRODUCT_LINE; // A product line with hard-coded products
+  }
 }

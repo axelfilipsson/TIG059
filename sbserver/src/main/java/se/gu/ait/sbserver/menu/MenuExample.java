@@ -19,12 +19,12 @@ public class MenuExample{
     m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
           System.out.println("Alla produkter");
-          ProductLine line = ProductLineFactory.getProductLine();
+          ProductLine line = ProductLineFactory.getXMLProductLine();
           List<Product> products = line.getAllProducts();
           for (Product p : products) {
             System.out.println(p);
           }
-          
+
           /*
           for(int i=0;i<products.size();i++){
             System.out.println(products.get(i));
