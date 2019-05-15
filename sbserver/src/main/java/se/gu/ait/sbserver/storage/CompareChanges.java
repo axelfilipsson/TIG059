@@ -67,6 +67,8 @@ public class CompareChanges implements Product.Exporter {
         .append(" ")
         .append(productGroup)
         .append(" ")
+        .append(insertDate)
+        .append(" ")
         .append(type)
         .toString();
     }
