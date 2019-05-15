@@ -82,7 +82,7 @@ public class CompareChanges implements Product.Exporter {
 
   public String toSQLCompareDateString (){
       return String
-      .format("select * from product where insertDate > '2013-04-12';"
+      .format("select * from product where insertDate > (SELECT date('now','-4 month'));"
       ,nr,escape(name),price,alcohol,volume
       ,ProductGroups.idFromProductGroup(productGroup),escape(type));
   }
