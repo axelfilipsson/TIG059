@@ -16,6 +16,8 @@ public class MenuExample{
   public static void main(String[] args){
     Menu m = new Menu("Meny");
 
+    CompareChanges nyheter = new CompareChanges();
+
     m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
           System.out.println("Alla produkter");
@@ -35,6 +37,7 @@ public class MenuExample{
       m.addMenuItem("Nyheter", new MenuAction(){
           public void onItemSelected(){
             System.out.println("Alla förändringar i sortimentet");
+            nyheter.toSQLCompareDateString();
           }
         });
 
