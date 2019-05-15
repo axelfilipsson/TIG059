@@ -24,3 +24,5 @@ tidy -indent -utf8 -xml src/main/resources/sortiment.xml > src/main/resources/fo
 mv src/main/resources/formatted.xml src/main/resources/sortiment.xml
 echo -e "\nDone fixing the xml indentation."
 echo -e "==========\n\n"
+echo -e "Inserting files to database, please wait"
+mvn exec:java -Dexec.mainClass=se.gu.ait.sbserver.main.TestSQLInsertExporter -DProductLine=INSERT

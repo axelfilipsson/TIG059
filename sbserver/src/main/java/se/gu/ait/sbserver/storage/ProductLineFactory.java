@@ -19,6 +19,9 @@ public class ProductLineFactory {
   private static final ProductLine XML_PRODUCT_LINE =
     new XMLBasedProductLine();
 
+  private static final ProductLine INSERT_PRODUCT_LINE =
+    new InsertProductLine();
+
   /**
    * Prevent instantiation.
    */
@@ -34,6 +37,8 @@ public class ProductLineFactory {
     //System.out.println("ProductLine: " + System.getProperty("ProductLine"));
     if ("DB".equals(System.getProperty("ProductLine"))) {
       return SQL_PRODUCT_LINE;
+    } else if("INSERT".equals(System.getProperty("ProductLine"))) {
+      return INSERT_PRODUCT_LINE;
     } else {
       return XML_PRODUCT_LINE; // A product line with hard-coded products
     }

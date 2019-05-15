@@ -261,7 +261,7 @@ public class SQLBasedProductLine implements ProductLine {
             product.export(sqlInsert);
             pge.toSQLReplaceString();
             stmt.execute(sqlInsert.toSQLReplaceString());
-            System.out.println("--Product added--");
+            System.out.println("--Product added--" + product);
           }
       }catch (SQLException sqle) {
         System.err.println("Unable to insert products from xml " + sqle.getMessage());
