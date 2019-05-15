@@ -1,8 +1,7 @@
 package se.gu.ait.sbserver.menu;
 
 import se.gu.ait.sbserver.domain.Product;
-import se.gu.ait.sbserver.storage.ProductLine;
-import se.gu.ait.sbserver.storage.ProductLineFactory;
+import se.gu.ait.sbserver.storage.*;
 
 import java.util.ArrayList;
 import java.util.List;
