@@ -4,5 +4,13 @@ import java.sql.*;
 
 public class ProductSearch{
 
-  
+    DBHelper getConn = new DBHelper();
+  public static ResultSet nrSearch() {
+    try {
+      PreparedStatement preparedStatment = getConn.createStatement();
+      
+    } catch(Exception e) {
+
+    }
+  }
 }
