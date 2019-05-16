@@ -35,11 +35,9 @@ public class TestSQLInsertExporter {
     // so that we can get an SQL INSERT statement from each one of them
     try {
       ProductLine line = ProductLineFactory.getProductLine();
-      List<Product> products = line.getAllProducts();
+      line.getAllProducts();
 
       // Create the insert statements for the product groups
-      Set<String> productGroupInserts = new HashSet<>();
-      ProductGroupExporter pge = new ProductGroupExporter();
       /*
       for (Product product : products) {
         product.export(pge);
@@ -51,7 +49,7 @@ public class TestSQLInsertExporter {
       }
       */
       // TODO: Fix sqlExp so that it uses the productGroupId
-      // instead of the productGroup string itself
+      // instead of the productGroup string itselfem.out.println(sqlExp.toSQLReplaceString());
 
     } catch (Exception e) {
       // Shoudn't happen...

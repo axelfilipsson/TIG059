@@ -51,8 +51,7 @@ public class InsertProductLine implements ProductLine {
 
   private List<Product> xmlproducts;
   private List<Product> products;
-  private static final String DB_URL =
-    "jdbc:sqlite:src/main/resources/bolaget.db";
+
   DBHelper getConn = new DBHelper();
 
   SQLInsertExporter sqlInsert = new SQLInsertExporter();
@@ -271,16 +270,29 @@ public class InsertProductLine implements ProductLine {
   }
 
   private void priceChangeInserter() {
+
+    /*if(xmlproducts.get(i).nr() != products.get(i).nr()) {
+    for (int i = 0; i < products.size(); i++) {
+        xmlproducts.remove(i);
+        products.remove(i);
+      } else {
+        System.out.println("The product is already in the list");
+      }
+    }*/
     products.retainAll(xmlproducts);
     Collections.sort(xmlproducts, Product.ID_ORDER);
     Collections.sort(products, Product.ID_ORDER);
+
+    /*System.out.println(xmlproducts.get(15000));
+    System.out.println(xmlproducts.size());
+    System.out.println(products.get(15000));
+    System.out.println(products.size());*/
     try {
       Connection conn = getConn.connect();
       Statement stmnt = conn.createStatement();
       for (int i = 0; i < xmlproducts.size(); i++) {
-          if(xmlproducts.get(i).price() != products.get(i).price()) {
+         if(xmlproducts.get(i).price() != products.get(i).price()) {
             xmlproducts.get(i).export(sqlInsert);
-            System.out.println(sqlInsert.toSQLInsertString());
             stmnt.execute(sqlInsert.toSQLInsertString());
             System.out.println("New price for product added: " + xmlproducts.get(i));
           }else {
@@ -291,16 +303,4 @@ public class InsertProductLine implements ProductLine {
       System.err.println("Unable to insert products to priceChanges " + sqle.getMessage());
     }
   }
-
-  /*public Connection connect(){
-    Connection conn = null;
-    try {
-      conn = DriverManager.getConnection(DB_URL);
-      System.out.println("Connection established");
-    } catch (SQLException sqle) {
-      System.err.println("Couldn't get connection to " + DB_URL +
-                         sqle.getMessage());
-    }
-    return conn;
-  }*/
 }
