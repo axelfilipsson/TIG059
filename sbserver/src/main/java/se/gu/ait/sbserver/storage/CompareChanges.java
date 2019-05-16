@@ -1,90 +1,48 @@
 package se.gu.ait.sbserver.storage;
 
 import se.gu.ait.sbserver.domain.Product;
+import se.gu.ait.sbserver.storage.*;
 
 
-public class CompareChanges implements Product.Exporter {
-    private String name;
-    private double price;
-    private double alcohol;
-    private int volume;
-    private int nr;
-    private String productGroup;
-    private String insertDate;
-    private String type;
+import java.util.*;
+import javax.xml.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.sql.*;
 
 
-    @Override
-    public void addName(String name) {
-      this.name = name;
+public class CompareChanges {
+
+  private List<Product> products;
+
+  private static final String DB_URL =
+    "jdbc:sqlite:src/main/resources/bolaget.db";
+
+  DBHelper getConn = new DBHelper(); // Skapar connection
+  SQLInsertExporter sqlInsert = new SQLInsertExporter(); // Insertar SQL-statementet
+  SQLBasedProductLine sqlProductLine = new SQLBasedProductLine(); // Läser ut svaret från SQL
+
+
+
+
+  public void sqlStatement() {
+  //    Collections.sort(products, Product.ID_ORDER);
+
+  try {
+
+    Connection conn = getConn.connect();
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(sqlInsert.toSQLCompareDateString());
+    while(rs.next()) {
+      System.out.println("Product name: " + rs.getString("name") + "\nProduct insertion date:" + rs.getString("insertDate") + "\n");
     }
-
-    @Override
-    public void addPrice(double price) {
-      this.price = price;
-    }
-
-    @Override
-    public void addAlcohol(double alcohol) {
-      this.alcohol = alcohol;
-    }
-
-    @Override
-    public void addVolume(int volume) {
-      this.volume = volume;
-    }
-
-    @Override
-    public void addNr(int nr) {
-      this.nr = nr;
-    }
-
-    @Override
-    public void addProductGroup(String productGroup) {
-      this.productGroup = productGroup;
-    }
-
-    @Override
-    public void addInsertDate(String insertDate) {
-      this.insertDate = insertDate;
-    }
-    @Override
-    public void addType(String type) {
-      this.type = type;
-    }
-
-
-    public String toString() {
-      return new StringBuilder(name)
-        .append(" ")
-        .append(price)
-        .append(" ")
-        .append(alcohol)
-        .append(" ")
-        .append(volume)
-        .append(" ")
-        .append(nr)
-        .append(" ")
-        .append(productGroup)
-        .append(" ")
-        .append(insertDate)
-        .append(" ")
-        .append(type)
-        .toString();
-    }
-    private String escape(String string) {
-      if (string == null) {
-        return "";
+      }catch (SQLException sqle) {
+        System.err.println("Inga produkter" + sqle.getMessage());
       }
-      return string
-        .replace("\"", "\"\"");
-    }
-
-  public String toSQLCompareDateString (){
-      return String
-      .format("select * from product where insertDate > (SELECT date('now','-4 month'));"
-      ,nr,escape(name),price,alcohol,volume
-      ,ProductGroups.idFromProductGroup(productGroup),escape(type));
   }
+
+
+
 
 }

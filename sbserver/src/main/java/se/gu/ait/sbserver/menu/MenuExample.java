@@ -36,7 +36,7 @@ public class MenuExample{
       m.addMenuItem("Nyheter", new MenuAction(){
           public void onItemSelected(){
             System.out.println("Alla förändringar i sortimentet");
-            nyheter.toSQLCompareDateString();
+            nyheter.sqlStatement();
           }
         });
 
