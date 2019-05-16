@@ -26,7 +26,7 @@ public class CompareChanges {
 
 
 
-  private void sqlStatement() {
+  public void sqlStatement() {
       Collections.sort(products, Product.ID_ORDER);
       try {
         Connection conn = getConn.connect();
