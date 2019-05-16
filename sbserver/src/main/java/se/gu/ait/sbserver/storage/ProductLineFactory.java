@@ -40,7 +40,7 @@ public class ProductLineFactory {
     } else if("INSERT".equals(System.getProperty("ProductLine"))) {
       return INSERT_PRODUCT_LINE;
     } else {
-      return XML_PRODUCT_LINE; // A product line with hard-coded products
+      return SQL_PRODUCT_LINE; // A product line with hard-coded products
     }
     //return new XMLBasedProductLine();
   }
