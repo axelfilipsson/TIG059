@@ -7,27 +7,26 @@ public class PriceSearch{
 
   private static Scanner in = new Scanner(System.in);
 
-  /* DBHelper getConn = new DBHelper();
-  public static ResultSet nrSearch() {
-    try {
-      PreparedStatement nrSearch = getConn.prepareStatement(
-      "SELECT * FROM priceChanges WHERE nr= ? ;");
-
-    } catch(Exception e) {
-
-    }
-  }*/
-  
   public static void askFor(String prompt){
-    String result; //Skapar variabeln result, borde vara en arreylist
-    System.out.print(prompt + ": "); //skriver ut frågan om
+    String result;
+    System.out.print(prompt + ": ");
     if(System.console() == null){
       result = in.nextLine();
     }else{
       result = System.console().readLine();
     }
-
-    System.out.println(result);
-    //return result; //datan vi vill visa
+    try {
+      DBHelper getConn = new DBHelper();
+      Connection conn = getConn.connect();
+      PreparedStatement nrSearch = conn.prepareStatement(
+      "SELECT * FROM priceChanges WHERE nr= ? ;");
+      nrSearch.setString(1, result);
+      ResultSet rs = nrSearch.executeQuery();
+      while (rs.next()) {
+        System.out.println("Product: " + rs.getInt("nr") + " " + rs.getString("changeDate") + " " + rs.getInt("price"));
+      }
+    } catch(Exception e) {
+      System.out.println("Något gick fel med att hämta från databasen");
+    }
   }
 }
