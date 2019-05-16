@@ -137,4 +137,12 @@ public class SQLInsertExporter implements Product.Exporter {
     return String
       .format("UPDATE product SET insertDate = date('now') WHERE insertDate = '';");
   }
+
+  public String toSQLCompareDateString (){
+      return String
+      .format("select * from product where insertDate > (SELECT date('now','-4 month'));"
+      ,nr,escape(name),price,alcohol,volume
+      ,ProductGroups.idFromProductGroup(productGroup),escape(type));
+  }
+
 }

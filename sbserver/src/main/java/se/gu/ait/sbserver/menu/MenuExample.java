@@ -15,7 +15,7 @@ public class MenuExample{
   public static void main(String[] args){
     Menu m = new Menu("Meny");
 
-    CompareChanges nyheter = new CompareChanges();
+    SQLInsertExporter nyheter = new SQLInsertExporter();
 
     m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
