@@ -79,7 +79,7 @@ public class DBHelper {
       return null;
     }
   }
-
+//where insertDate > (SELECT date('now','-4 month'))
 
   public Connection connect() {
     try {

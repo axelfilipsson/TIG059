@@ -140,9 +140,7 @@ public class SQLInsertExporter implements Product.Exporter {
 
   public String toSQLCompareDateString (){
       return String
-      .format("select * from product LIMIT 10;" //where insertDate > (SELECT date('now','-4 month'));"
-      ,nr,escape(name),price,alcohol,volume
-      ,ProductGroups.idFromProductGroup(productGroup),escape(type));
+      .format("select * from product LIMIT 10;"); //where insertDate > (SELECT date('now','-4 month'));";
   }
 
 }
