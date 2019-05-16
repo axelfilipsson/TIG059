@@ -28,12 +28,14 @@ public class CompareChanges {
 
   public void sqlStatement() {
   //    Collections.sort(products, Product.ID_ORDER);
+
   try {
+
     Connection conn = getConn.connect();
     Statement stmt = conn.createStatement();
     ResultSet rs = stmt.executeQuery(sqlInsert.toSQLCompareDateString());
     while(rs.next()) {
-      sqlInsert.toSQLCompareDateString();
+      System.out.println("Product name: " + rs.getString("name") + "\nProduct insertion date:" + rs.getString("insertDate") + "\n");
     }
       }catch (SQLException sqle) {
         System.err.println("Inga produkter" + sqle.getMessage());
