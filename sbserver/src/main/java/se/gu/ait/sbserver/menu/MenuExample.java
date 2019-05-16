@@ -42,7 +42,7 @@ public class MenuExample{
 
       m.addMenuItem("Produktsök", new MenuAction(){
           public void onItemSelected(){
-            System.out.println("Ange produkt id");
+            PriceSearch.askFor("Ange produkt id");
           }          });
 
     m.start();
