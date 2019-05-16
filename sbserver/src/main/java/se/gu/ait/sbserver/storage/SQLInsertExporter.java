@@ -39,6 +39,7 @@ public class SQLInsertExporter implements Product.Exporter {
   private int nr;
   private String productGroup;
   private String insertDate;
+  private String changeDate;
   private String type;
 
   @Override
@@ -125,6 +126,11 @@ public class SQLInsertExporter implements Product.Exporter {
               "VALUES(%d, \"%s\", %f, %f, %d, \"%d\", \"%s\", \"%s\");",
               nr, escape(name), price, alcohol,
               volume, ProductGroups.idFromProductGroup(productGroup), escape(insertDate), escape(type));
+  }
+
+  public String toSQLInsertString() {
+    return String
+      .format("REPLACE INTO priceChanges (nr, price, changeDate) VALUES(%d, %f, date('now'));", nr, price, changeDate);
   }
 
   public String toSQLUpdateString() {

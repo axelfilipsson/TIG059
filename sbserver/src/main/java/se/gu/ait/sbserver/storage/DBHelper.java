@@ -42,6 +42,7 @@ public class DBHelper {
 
   private static final String DB_URL =
     "jdbc:sqlite:src/main/resources/bolaget.db";
+  private Connection conn = null;
   private static Connection connection;
   static {
     try {
@@ -79,15 +80,13 @@ public class DBHelper {
     }
   }
 
+
   public Connection connect() {
-    Connection conn = null;
     try {
       conn = DriverManager.getConnection(DB_URL);
     } catch (SQLException sqle) {
-      logger.error("Couldn't get connection to " + DB_URL +
-              sqle.getMessage());
-      System.err.println("Couldn't get connection to " + DB_URL +
-                         sqle.getMessage());
+      System.err.println("Couldn't get connection to " + DB_URL + sqle.getMessage());
+      return null;
     }
     return conn;
   }

@@ -1,6 +1,7 @@
 package se.gu.ait.sbserver.storage;
 
 import se.gu.ait.sbserver.domain.Product;
+import se.gu.ait.sbserver.storage.DBHelper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.Collection;
+import java.util.*;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -51,6 +53,7 @@ public class InsertProductLine implements ProductLine {
   private List<Product> products;
   private static final String DB_URL =
     "jdbc:sqlite:src/main/resources/bolaget.db";
+  DBHelper getConn = new DBHelper();
 
   SQLInsertExporter sqlInsert = new SQLInsertExporter();
   ProductGroupExporter pge = new ProductGroupExporter();
@@ -61,6 +64,7 @@ public class InsertProductLine implements ProductLine {
   public List<Product> getProductsFilteredBy(Predicate<Product> predicate) {
     readProductsFromFile();
     readProductsFromDatabase();
+    priceChangeInserter();
     xmlInserter();
     return xmlproducts.stream().filter(predicate).collect(Collectors.toList());
   }
@@ -68,6 +72,7 @@ public class InsertProductLine implements ProductLine {
   public List<Product> getAllProducts() {
     readProductsFromFile();
     readProductsFromDatabase();
+    priceChangeInserter();
     xmlInserter();
     return null;
   }
@@ -250,7 +255,9 @@ public class InsertProductLine implements ProductLine {
   }
 
   private void xmlInserter() {
-      try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
+      try {
+        Connection conn = getConn.connect();
+        Statement stmt = conn.createStatement();
         xmlproducts.removeAll(products);
         for (Product product : xmlproducts) {
             product.export(sqlInsert);
@@ -263,7 +270,29 @@ public class InsertProductLine implements ProductLine {
       }
   }
 
-  public Connection connect(){
+  private void priceChangeInserter() {
+    products.retainAll(xmlproducts);
+    Collections.sort(xmlproducts, Product.ID_ORDER);
+    Collections.sort(products, Product.ID_ORDER);
+    try {
+      Connection conn = getConn.connect();
+      Statement stmnt = conn.createStatement();
+      for (int i = 0; i < xmlproducts.size(); i++) {
+          if(xmlproducts.get(i).price() != products.get(i).price()) {
+            xmlproducts.get(i).export(sqlInsert);
+            System.out.println(sqlInsert.toSQLInsertString());
+            stmnt.execute(sqlInsert.toSQLInsertString());
+            System.out.println("New price for product added: " + xmlproducts.get(i));
+          }else {
+            System.out.println("There is no difference for this product");
+          }
+        }
+    }catch (SQLException sqle) {
+      System.err.println("Unable to insert products to priceChanges " + sqle.getMessage());
+    }
+  }
+
+  /*public Connection connect(){
     Connection conn = null;
     try {
       conn = DriverManager.getConnection(DB_URL);
@@ -273,5 +302,5 @@ public class InsertProductLine implements ProductLine {
                          sqle.getMessage());
     }
     return conn;
-    }
+  }*/
 }

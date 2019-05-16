@@ -60,7 +60,7 @@ import java.util.Comparator;
  * e.g. from a database or some web API call, etc.
  * </p>
  */
-public class Product {
+public class Product{
 
     private String name;
     private double price; // SEK
@@ -241,6 +241,8 @@ public class Product {
      * A Comparator that orders Products based on their volume.
      */
     public static final Comparator<Product> VOLUME_ORDER = Comparator.comparing(Product::volume);
+
+    public static final Comparator<Product> ID_ORDER = Comparator.comparing(Product::nr);
 
     /**
      * Constructs a new Product.
