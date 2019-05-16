@@ -17,14 +17,17 @@ public class PriceSearch{
 
     }
   }*/
-  public static String askFor(String prompt){
-    String result;
-    System.out.print(prompt + ": ");
+  
+  public static void askFor(String prompt){
+    String result; //Skapar variabeln result, borde vara en arreylist
+    System.out.print(prompt + ": "); //skriver ut frågan om
     if(System.console() == null){
       result = in.nextLine();
     }else{
       result = System.console().readLine();
     }
-    return result;
+
+    System.out.println(result);
+    //return result; //datan vi vill visa
   }
 }
