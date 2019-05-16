@@ -1,8 +1,7 @@
 package se.gu.ait.sbserver.menu;
 
 import se.gu.ait.sbserver.domain.Product;
-import se.gu.ait.sbserver.storage.ProductLine;
-import se.gu.ait.sbserver.storage.ProductLineFactory;
+import se.gu.ait.sbserver.storage.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,8 @@ import java.util.List;
 public class MenuExample{
   public static void main(String[] args){
     Menu m = new Menu("Meny");
+
+    CompareChanges nyheter = new CompareChanges();
 
     m.addMenuItem("Sortiment", new MenuAction(){
         public void onItemSelected(){
@@ -35,6 +36,7 @@ public class MenuExample{
       m.addMenuItem("Nyheter", new MenuAction(){
           public void onItemSelected(){
             System.out.println("Alla förändringar i sortimentet");
+            nyheter.toSQLCompareDateString();
           }
         });
 
