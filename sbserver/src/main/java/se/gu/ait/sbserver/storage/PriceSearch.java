@@ -23,7 +23,7 @@ public class PriceSearch{
       nrSearch.setString(1, result);
       ResultSet rs = nrSearch.executeQuery();
       while (rs.next()) {
-        System.out.println("Product: " + rs.getInt("nr") + " " + rs.getString("changeDate") + " " + rs.getInt("price"));
+        System.out.println("Product: " + rs.getInt("nr") + " " + rs.getString("changeDate") + " " + rs.getDouble("price"));
       }
     } catch(Exception e) {
       System.out.println("Något gick fel med att hämta från databasen");

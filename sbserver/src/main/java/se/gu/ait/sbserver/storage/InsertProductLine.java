@@ -63,16 +63,20 @@ public class InsertProductLine implements ProductLine {
   public List<Product> getProductsFilteredBy(Predicate<Product> predicate) {
     readProductsFromFile();
     readProductsFromDatabase();
-    priceChangeInserter();
     xmlInserter();
+    readProductsFromFile();
+    readProductsFromDatabase();
+    priceChangeInserter();
     return xmlproducts.stream().filter(predicate).collect(Collectors.toList());
   }
 
   public List<Product> getAllProducts() {
     readProductsFromFile();
     readProductsFromDatabase();
-    priceChangeInserter();
     xmlInserter();
+    readProductsFromFile();
+    readProductsFromDatabase();
+    priceChangeInserter();
     return null;
   }
 
@@ -296,7 +300,7 @@ public class InsertProductLine implements ProductLine {
             stmnt.execute(sqlInsert.toSQLInsertString());
             System.out.println("New price for product added: " + xmlproducts.get(i));
           }else {
-            System.out.println("There is no difference for this product");
+            //System.out.println("There is no difference for this product");
           }
         }
     }catch (SQLException sqle) {

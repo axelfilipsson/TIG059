@@ -353,7 +353,6 @@ public class Product{
         return this.name.equals(that.name) &&
                 this.alcohol == that.alcohol &&
                 this.volume == that.volume &&
-                this.price == that.price &&
                 this.nr == that.nr;
     }
 
