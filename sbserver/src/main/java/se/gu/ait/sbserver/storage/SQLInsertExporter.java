@@ -8,7 +8,7 @@ import se.gu.ait.sbserver.domain.Product;
  * <p>An SQLInsertExporter object can, produce a String with the SQL
  * for inserting (or replacing) a Product into the product table in our
  * database. </p>
- * 
+ *
  * <p>Typical usage:
  * <pre>
  *     Product p1 = new Product.Builder()
@@ -38,6 +38,8 @@ public class SQLInsertExporter implements Product.Exporter {
   private int volume;
   private int nr;
   private String productGroup;
+  private String insertDate;
+  private String changeDate;
   private String type;
 
   @Override
@@ -71,12 +73,17 @@ public class SQLInsertExporter implements Product.Exporter {
   }
 
   @Override
+  public void addInsertDate(String insertDate) {
+    this.insertDate = insertDate;
+  }
+
+  @Override
   public void addType(String type) {
     this.type = type;
   }
 
   /**
-   * Returns the exported Product as a plain String 
+   * Returns the exported Product as a plain String
    * for debuggin purposes
    * @return The exported Product as a plain String
    */
@@ -93,6 +100,8 @@ public class SQLInsertExporter implements Product.Exporter {
       .append(" ")
       .append(productGroup)
       .append(" ")
+      .append(insertDate)
+      .append(" ")
       .append(type)
       .toString();
   }
@@ -103,7 +112,7 @@ public class SQLInsertExporter implements Product.Exporter {
     return string
       .replace("\"", "\"\"");
   }
-  
+
   /**
    * Returns a String with an SQL REPLACE statement for the exported Product
    * with all double quotes escaped by doubling them (the way SQLite3 treats
@@ -113,9 +122,25 @@ public class SQLInsertExporter implements Product.Exporter {
   public String toSQLReplaceString() {
     return String
       .format("REPLACE INTO product" +
-              "(nr, name, price, alcohol, volume, productGroupId, type) " +
-              "VALUES(%d, \"%s\", %f, %f, %d, \"%d\", \"%s\");",
+              "(nr, name, price, alcohol, volume, productGroupId, insertDate, type) " +
+              "VALUES(%d, \"%s\", %f, %f, %d, \"%d\", \"%s\", \"%s\");",
               nr, escape(name), price, alcohol,
-              volume, ProductGroups.idFromProductGroup(productGroup), escape(type));
+              volume, ProductGroups.idFromProductGroup(productGroup), escape(insertDate), escape(type));
   }
+
+  public String toSQLInsertString() {
+    return String
+      .format("REPLACE INTO priceChanges (nr, price, changeDate) VALUES(%d, %f, date('now'));", nr, price, changeDate);
+  }
+
+  public String toSQLUpdateString() {
+    return String
+      .format("UPDATE product SET insertDate = date('now') WHERE insertDate = '';");
+  }
+
+  public String toSQLCompareDateString (){
+      return String
+      .format("select * from product where insertDate > (SELECT date('now','-4 month'));");
+  }
+
 }

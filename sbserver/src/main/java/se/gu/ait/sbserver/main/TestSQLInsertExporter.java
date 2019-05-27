@@ -30,16 +30,14 @@ public class TestSQLInsertExporter {
     // Example use:
     //p1.export(sqlExp);
     //System.out.println(sqlExp.toSQLInsertString());
-    
+
     // Load all products from the XML file and export each product
     // so that we can get an SQL INSERT statement from each one of them
     try {
       ProductLine line = ProductLineFactory.getProductLine();
-      List<Product> products = line.getAllProducts();
+      line.getAllProducts();
 
       // Create the insert statements for the product groups
-      Set<String> productGroupInserts = new HashSet<>();
-      ProductGroupExporter pge = new ProductGroupExporter();
       /*
       for (Product product : products) {
         product.export(pge);
@@ -51,19 +49,13 @@ public class TestSQLInsertExporter {
       }
       */
       // TODO: Fix sqlExp so that it uses the productGroupId
-      // instead of the productGroup string itself
-      for (Product product : products) {
-        product.export(sqlExp);
-        product.export(pge);
-        System.out.println(pge.toSQLReplaceString());
-        System.out.println(sqlExp.toSQLReplaceString());
-      }
-      
+      // instead of the productGroup string itselfem.out.println(sqlExp.toSQLReplaceString());
+
     } catch (Exception e) {
       // Shoudn't happen...
       System.err.println("Error parsing XML: " + e.getMessage());
       e.printStackTrace();
     }
-    
+
   }
 }

@@ -16,19 +16,19 @@ public class FakeProductLine implements ProductLine {
 
   // Prevent instantiation from outside this package
   FakeProductLine() { }
-  
+
   public List<Product> getProductsFilteredBy(Predicate<Product> predicate) {
-    if (products == null) {      
+    if (products == null) {
       //createFakeProducts();
-      createFakeProductsFromCSV();
+      createFakeProducts();
     }
     return products.stream().filter(predicate).collect(Collectors.toList());
   }
-  
+
   public List<Product> getAllProducts() {
     if (products == null) {
       //createFakeProducts();
-      createFakeProductsFromCSV();
+      createFakeProducts();
     }
     return products;
   }
@@ -48,7 +48,7 @@ public class FakeProductLine implements ProductLine {
       .productGroup(productGroup)
       .type(type)
       .build();
-    
+
   }
 
   // Set the products list by calling the helper
@@ -61,7 +61,7 @@ public class FakeProductLine implements ProductLine {
   }
 
   private void createFakeProducts() {
-    System.out.println("Creating products from CSV");
+    //System.out.println("Creating products from CSV");
     products = new ArrayList<>();
     products.add(getFakeProduct("Johanneshof Reinisch Pinot Noir","143.0","13.0","750","7440201","Rött vin",""));
     products.add(getFakeProduct("Dobogó Tokaji Furmint","187.0","13.5","750","7598701","Vitt vin",""));
@@ -85,5 +85,5 @@ public class FakeProductLine implements ProductLine {
     products.add(getFakeProduct("Abrigo Giovanni Piemonte Mix 1","732.0","13.5","4500","7096809","Rött vin",""));
     //products.add(getFakeProduct("", "", "", "", "", "", "", "");
   }
-  
+
 }

@@ -8,7 +8,7 @@ import se.gu.ait.sbserver.domain.Product;
  * <p>A JsonExporter object can, produce a String with the Json
  * representing a Product.
  * </p>
- * 
+ *
  * <p>Typical usage:
  * <pre>
  *     Product p1 = new Product.Builder()
@@ -32,7 +32,7 @@ import se.gu.ait.sbserver.domain.Product;
  *       "alcohol": 37.50,
  *       "volume": 700,
  *       "nr": 101,
- *       "product_group": "Okryddad sprit" 
+ *       "product_group": "Okryddad sprit"
  *}
  * </pre>
  * </p>
@@ -44,6 +44,7 @@ public class JsonExporter implements Product.Exporter {
   private int volume;
   private int nr;
   private String productGroup;
+  private String insertDate;
   private String type;
 
   @Override
@@ -77,12 +78,17 @@ public class JsonExporter implements Product.Exporter {
   }
 
   @Override
+  public void addInsertDate(String insertDate) {
+    this.insertDate = insertDate;
+  }
+
+  @Override
   public void addType(String type) {
     this.type = type;
   }
 
   /**
-   * Returns the exported Product as a plain String 
+   * Returns the exported Product as a plain String
    * for debuggin purposes
    * @return The exported Product as a plain String
    */
@@ -99,6 +105,8 @@ public class JsonExporter implements Product.Exporter {
       .append(" ")
       .append(productGroup)
       .append(" ")
+      .append(insertDate)
+      .append(" ")
       .append(type)
       .toString();
   }
@@ -109,7 +117,7 @@ public class JsonExporter implements Product.Exporter {
     return string
       .replace("\"", "\\\"");
   }
-  
+
   /**
    * Returns a String with a Json representation of an object.
    * @return A String with a Json object representation of a product
@@ -130,7 +138,7 @@ public class JsonExporter implements Product.Exporter {
       .append(escape(productGroup)).append("\"\n")
       .append("  }");
     return json.toString();
-      
+
   }
   /*
  *{
@@ -139,7 +147,7 @@ public class JsonExporter implements Product.Exporter {
  *       "alcohol": 37.50,
  *       "volume": 700,
  *       "nr": 101,
- *       "product_group": "Okryddad sprit" 
+ *       "product_group": "Okryddad sprit"
  *}
 
    */

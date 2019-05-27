@@ -10,17 +10,23 @@ package se.gu.ait.sbserver.storage;
  */
 public class ProductLineFactory {
 
-  private static final ProductLine SQL_PRODUCT_LINE = 
+  private static final ProductLine SQL_PRODUCT_LINE =
     new SQLBasedProductLine();
-  
-  private static final ProductLine FAKE_PRODUCT_LINE = 
+
+  private static final ProductLine FAKE_PRODUCT_LINE =
     new FakeProductLine();
-  
+
+  private static final ProductLine XML_PRODUCT_LINE =
+    new XMLBasedProductLine();
+
+  private static final ProductLine INSERT_PRODUCT_LINE =
+    new InsertProductLine();
+
   /**
    * Prevent instantiation.
    */
   private ProductLineFactory() {
-    
+
   }
 
   /**
@@ -31,9 +37,15 @@ public class ProductLineFactory {
     //System.out.println("ProductLine: " + System.getProperty("ProductLine"));
     if ("DB".equals(System.getProperty("ProductLine"))) {
       return SQL_PRODUCT_LINE;
+    } else if("INSERT".equals(System.getProperty("ProductLine"))) {
+      return INSERT_PRODUCT_LINE;
     } else {
-      return FAKE_PRODUCT_LINE; // A product line with hard-coded products
+      return SQL_PRODUCT_LINE; // A product line with hard-coded products
     }
     //return new XMLBasedProductLine();
+  }
+
+  public static ProductLine getXMLProductLine(){
+      return XML_PRODUCT_LINE; // A product line with hard-coded products
   }
 }
